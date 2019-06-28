@@ -13,7 +13,7 @@ def eval_booster(dataframe):
         features_train, features_val = features[train_index], features[val_index]
         labels_train, labels_val = labels[train_index], labels[val_index]
         features = dataframe.drop(columns=["Survived"]).values
-        booster = XGBClassifier(max_depth=4, min_child_weight=3, subsample=1)
+        booster = XGBClassifier(max_depth=4, min_child_weight=9, subsample=1)
         booster.fit(
             features_train,
             labels_train,
@@ -30,7 +30,7 @@ def train_booster(dataframe):
     print(dataframe.columns)
     labels = dataframe.Survived.values
     features = dataframe.drop(columns=["Survived"]).values
-    booster = XGBClassifier(max_depth=4, min_child_weight=3, subsample=1)
+    booster = XGBClassifier(max_depth=4, min_child_weight=9, subsample=1)
     booster.fit(
         features,
         labels,
