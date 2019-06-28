@@ -20,8 +20,8 @@ if __name__ == '__main__':
     test_df = preprocess_data(test_df, train=False)
     accuracy = eval_booster(train_df)
     logger.info(f"Mean Accuracy over 5 folds: {accuracy}")
-    booster = train_booster(train_df)
-    predictions = booster.predict(test_df.values)
+    booster = train_booster(train_df.drop(columns=["PassengerId"]))
+    predictions = booster.predict(test_df.drop(columns=["PassengerId"]).values)
     predictions = [round_pred(pred) for pred in predictions]
 
     submission = pd.DataFrame({
