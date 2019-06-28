@@ -18,11 +18,10 @@ if __name__ == '__main__':
     train_df, test_df = load_data(config.data)
     train_df = preprocess_data(train_df, train=True)
     test_df = preprocess_data(test_df, train=False)
-    auc = eval_booster(train_df)
-    logger.info(f"AUC over 5 folds: {auc}")
+    accuracy = eval_booster(train_df)
+    logger.info(f"Mean Accuracy over 5 folds: {accuracy}")
     booster = train_booster(train_df)
-    test_dataset = xgb.DMatrix(test_df.values)
-    predictions = booster.predict(test_dataset)
+    predictions = booster.predict(test_df.values)
     predictions = [round_pred(pred) for pred in predictions]
 
     submission = pd.DataFrame({

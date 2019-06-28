@@ -78,7 +78,7 @@ def filter_name_title(df):
     df["missus"] = df.Name.apply(lambda name: check_title("Mrs.", name))
     df["miss"] = df.Name.apply(lambda name: check_title("Miss.", name))
     df["other_title"] = df.Name.apply(lambda name: impute_other_title(name))
-    df.drop(columns="Name")
+    df = df.drop(columns="Name")
     return df
 
 def add_cabin(df):
